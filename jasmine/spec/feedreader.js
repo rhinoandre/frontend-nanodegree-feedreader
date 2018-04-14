@@ -23,7 +23,7 @@ $(function() {
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+            expect(allFeeds.length).not.toBe(0)
         });
 
 
@@ -50,13 +50,21 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-        it('');
+        it('should be hidden on page start', () => {
+            expect($('.menu-hidden')).toBeDefined()
+        });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-         it('');
+         it('should toggle the menu when the button is clicked', () => {
+            $('.menu-icon-link').click();
+            expect($('.menu-hidden').length).toBe(0)
+
+            $('.menu-icon-link').click()
+            expect($('.menu-hidden').length).toBe(1)
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -67,15 +75,31 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        it('');
+
+         beforeEach((done) => {
+             loadFeed(0, () => done())
+         })
+
+        it('should have values', (done) => {
+            expect($('.entry').length).toBeGreaterThan(0);
+            done()
+        });
     });
     
     /* TODO: Write a new test suite named "New Feed Selection" */
-    describe('', function() {
+    describe('New Feed Selection', function() {
+        let firstElementTitle;
+        beforeEach((done) => {
+            firstElementTitle = $('.entry:first > h2').text();
+            loadFeed(1, () => done())
+        })
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        it('');
+        it('should update the list when load a new feed', (done) => {
+            expect($('.entry:first > h2').text()).not.toBe(firstElementTitle)
+            done()
+        });
     });
 }());
