@@ -44,14 +44,13 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
-
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
         it('should be hidden on page start', () => {
-            expect($('.menu-hidden')).toBeDefined()
+            expect($('body').hasClass('menu-hidden')).toBeTruthy()
         });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -60,10 +59,10 @@ $(function() {
           */
          it('should toggle the menu when the button is clicked', () => {
             $('.menu-icon-link').click();
-            expect($('.menu-hidden').length).toBe(0)
+            expect($('body').hasClass('menu-hidden')).toBeFalsy()
 
             $('.menu-icon-link').click()
-            expect($('.menu-hidden').length).toBe(1)
+            expect($('body').hasClass('menu-hidden')).toBeTruthy()
         });
     });
 
@@ -78,7 +77,7 @@ $(function() {
 
          beforeEach((done) => {
              loadFeed(0, () => done())
-         })
+         });
 
         it('should have values', (done) => {
             expect($('.entry').length).toBeGreaterThan(0);
@@ -98,7 +97,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
         it('should update the list when load a new feed', (done) => {
-            expect($('.entry:first > h2').text()).not.toBe(firstElementTitle)
+            expect($('.entry:first > h2').text()).not.toEqual(firstElementTitle)
             done()
         });
     });
