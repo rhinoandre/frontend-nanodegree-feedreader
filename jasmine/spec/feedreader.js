@@ -22,10 +22,10 @@ $(function() {
          
         it('should toggle the menu when the button is clicked', () => {
             $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toBeFalsy();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
 
             $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toBeTruthy();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -43,8 +43,10 @@ $(function() {
     describe('New Feed Selection', function() {
         let firstElementTitle;
         beforeEach((done) => {
-            firstElementTitle = $('.entry:first > h2').text();
-            loadFeed(1, () => done());
+            loadFeed(0, () => {
+                firstElementTitle = $('.entry:first > h2').text();
+                loadFeed(1, () => done());
+            });
         })
 
         it('should update the list when load a new feed', (done) => {
