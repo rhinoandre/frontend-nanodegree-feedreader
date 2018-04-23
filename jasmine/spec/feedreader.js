@@ -23,12 +23,12 @@ $(function() {
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0)
+            expect(allFeeds.length).not.toBe(0);
         });
 
 
         it('should have the property URL defined and not empty for each object in the allFeeds array', function() {
-            expect(allFeeds.every(feed => feed.url)).toBeTruthy()
+            expect(allFeeds.every(feed => feed.url)).toBeTruthy();
         });
         
         
@@ -37,7 +37,7 @@ $(function() {
         * and that the name is not empty.
         */
         it('should have the property name defined and not empty for each object in the allFeeds array', function() {
-            expect(allFeeds.every(feed => feed.name)).toBeTruthy()
+            expect(allFeeds.every(feed => feed.name)).toBeTruthy();
         });
     });
 
@@ -50,7 +50,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('should be hidden on page start', () => {
-            expect($('body').hasClass('menu-hidden')).toBeTruthy()
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
         });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -59,10 +59,10 @@ $(function() {
           */
          it('should toggle the menu when the button is clicked', () => {
             $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toBeFalsy()
+            expect($('body').hasClass('menu-hidden')).toBeFalsy();
 
-            $('.menu-icon-link').click()
-            expect($('body').hasClass('menu-hidden')).toBeTruthy()
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
         });
     });
 
@@ -76,12 +76,12 @@ $(function() {
          */
 
          beforeEach((done) => {
-             loadFeed(0, () => done())
+             loadFeed(0, () => done());
          });
 
         it('should have values', (done) => {
             expect($('.entry').length).toBeGreaterThan(0);
-            done()
+            done();
         });
     });
     
@@ -90,15 +90,15 @@ $(function() {
         let firstElementTitle;
         beforeEach((done) => {
             firstElementTitle = $('.entry:first > h2').text();
-            loadFeed(1, () => done())
+            loadFeed(1, () => done());
         })
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         it('should update the list when load a new feed', (done) => {
-            expect($('.entry:first > h2').text()).not.toEqual(firstElementTitle)
-            done()
+            expect($('.entry:first > h2').text()).not.toEqual(firstElementTitle);
+            done();
         });
     });
 }());
